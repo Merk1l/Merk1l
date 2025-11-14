@@ -34,76 +34,63 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// Модальные окна
-const modalOverlay = document.getElementById('modal-overlay');
-const openModalBtn = document.getElementById('open-modal');
-const closeModalBtn = document.getElementById('close-modal');
-
-openModalBtn?.addEventListener('click', () => {
-  modalOverlay.style.display = 'flex';
-});
-
-closeModalBtn?.addEventListener('click', () => {
-  modalOverlay.style.display = 'none';
-});
-
-// Кнопка "наверх"
-const scrollTopBtn = document.querySelector('.scroll-top-btn');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 300) {
-    scrollTopBtn.style.display = 'block';
-  } else {
-    scrollTopBtn.style.display = 'none';
-  }
-});
-
-scrollTopBtn?.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-// Прогресс скролла
-const scrollProgress = document.querySelector('.scroll-progress');
-window.addEventListener('scroll', () => {
-  const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-  scrollProgress.style.width = `${scrollPercent}%`;
-});
-
-// Вкладки
-document.querySelectorAll('.tab-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-    btn.classList.add('active');
-    const tabId = btn.getAttribute('data-tab');
-    document.getElementById(tabId).classList.add('active');
-  });
-});
-
-// Аккордеон
-document.querySelectorAll('.accordion-header').forEach(header => {
-  header.addEventListener('click', () => {
-    const body = header.nextElementSibling;
-    body.classList.toggle('active');
-  });
-});
-
-// Адаптивное меню
-const burgerBtn = document.querySelector('.burger-btn');
-const topNav = document.querySelector('.top-nav');
-
-burgerBtn?.addEventListener('click', () => {
-  topNav.classList.toggle('nav-open');
-});
-
-// Логика для раздела "Кнопки" (как в первой версии)
-const sectionBtns = document.querySelectorAll('.section-btn');
-const cssExamples = document.getElementById('css-examples');
-const jsExamples = document.getElementById('js-examples');
-const detailBox = document.getElementById('detail');
-
 // Данные примеров
 const examplesData = {
-  // CSS
+  // Типографика
+  'typo-responsive': {
+    title: 'Адаптивный текст',
+    desc: 'Шрифт изменяется в зависимости от размера экрана.',
+    html: '<p class="responsive-text">Этот текст адаптируется под размер экрана</p>',
+    css: `.responsive-text {
+  font-size: clamp(1rem, 4vw, 2.5rem);
+}`
+  },
+  'typo-gradient': {
+    title: 'Градиентный текст',
+    desc: 'Текст с градиентом.',
+    html: '<h2 class="gradient-text">Градиентный текст</h2>',
+    css: `.gradient-text {
+  background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 2.5rem;
+}`
+  },
+  'typo-shadow': {
+    title: 'Текст с тенями',
+    desc: 'Текст с CSS-тенью.',
+    html: '<h2 class="shadow-text">Текст с тенью</h2>',
+    css: `.shadow-text {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  font-size: 2rem;
+}`
+  },
+  'typo-change': {
+    title: 'Изменение текста',
+    desc: 'Изменение текста при клике.',
+    html: '<p class="text-change" id="textChange">Кликни меня!</p>',
+    js: `document.getElementById('textChange').addEventListener('click', () => {
+  document.getElementById('textChange').textContent = 'Текст изменился!';
+});`
+  },
+  'typo-typewriter': {
+    title: 'Печатающийся текст',
+    desc: 'Текст появляется по буквам.',
+    html: '<p class="typewriter-text" id="typewriter"></p>',
+    js: `const text = 'Привет, мир!';
+let i = 0;
+const speed = 100;
+function typeWriter() {
+  if (i < text.length) {
+    document.getElementById('typewriter').innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+typeWriter();`
+  },
+
+  // Кнопки
   'css-basic': {
     title: 'Базовая кнопка на CSS',
     desc: 'Простейшая кнопка с использованием базовых свойств CSS: padding, border-radius, background.',
@@ -161,8 +148,6 @@ const examplesData = {
   transform: scale(1.05) rotate(2deg);
 }`
   },
-
-  // JavaScript
   'js-alert': {
     title: 'Кнопка с alert()',
     desc: 'Простейший пример взаимодействия: при клике выводится системное всплывающее окно.',
@@ -189,22 +174,1081 @@ btn.addEventListener('click', () => {
   count++;
   btn.textContent = \`Кликов: \${count}\`;
 });`
+  },
+
+  // Формы
+  'form-basic': {
+    title: 'Простая форма',
+    desc: 'Базовая HTML-форма с полями ввода и кнопкой.',
+    html: `<form>
+  <input type="text" placeholder="Имя" />
+  <input type="email" placeholder="Email" />
+  <button type="submit">Отправить</button>
+</form>`,
+    css: `form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+input, button {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}`
+  },
+  'form-styled': {
+    title: 'Стилизованная форма',
+    desc: 'Форма с улучшенным дизайном.',
+    html: `<form class="styled-form">
+  <input type="text" placeholder="Имя" />
+  <input type="email" placeholder="Email" />
+  <button type="submit">Отправить</button>
+</form>`,
+    css: `.styled-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.styled-form input, .styled-form button {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+.styled-form button {
+  background: #0d6efd;
+  color: white;
+  border: none;
+  cursor: pointer;
+}`
+  },
+  'form-grid': {
+    title: 'Форма в сетке',
+    desc: 'Форма с элементами в сетке.',
+    html: `<form class="grid-form">
+  <div class="form-row">
+    <input type="text" placeholder="Имя" />
+    <input type="email" placeholder="Email" />
+  </div>
+  <button type="submit">Отправить</button>
+</form>`,
+    css: `.grid-form .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.grid-form input, .grid-form button {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.grid-form button {
+  grid-column: span 2;
+}`
+  },
+  'form-validation': {
+    title: 'Валидация формы',
+    desc: 'Простая проверка полей формы.',
+    html: `<form class="validated-form">
+  <input type="text" placeholder="Имя" required />
+  <input type="email" placeholder="Email" required />
+  <button type="submit">Отправить</button>
+</form>`,
+    css: `.validated-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.validated-form input, .validated-form button {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+.validated-form button {
+  background: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+}`,
+    js: `document.querySelector('.validated-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  alert('Форма отправлена!');
+});`
+  },
+  'form-dynamic': {
+    title: 'Динамическое поле',
+    desc: 'Поле, которое добавляется по клику.',
+    html: `<form class="dynamic-form">
+  <div class="fields-container">
+    <input type="text" placeholder="Поле 1" />
+  </div>
+  <button type="button" id="addField">Добавить поле</button>
+  <button type="submit">Отправить</button>
+</form>`,
+    js: `document.getElementById('addField').addEventListener('click', () => {
+  const container = document.querySelector('.fields-container');
+  const newField = document.createElement('input');
+  newField.type = 'text';
+  newField.placeholder = 'Поле ' + (container.children.length + 1);
+  container.appendChild(newField);
+});`
+  },
+
+  // Навигация
+  'nav-horizontal': {
+    title: 'Горизонтальное меню',
+    desc: 'Простое меню в строку.',
+    html: `<ul class="nav-menu">
+  <li><a href="#">Главная</a></li>
+  <li><a href="#">О нас</a></li>
+  <li><a href="#">Контакты</a></li>
+</ul>`,
+    css: `.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+.nav-menu a {
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background: #e9ecef;
+}`
+  },
+  'nav-dropdown': {
+    title: 'Выпадающее меню',
+    desc: 'Меню с выпадающим списком.',
+    html: `<div class="dropdown">
+  <button class="dropdown-btn">Меню</button>
+  <ul class="dropdown-content">
+    <li><a href="#">Подпункт 1</a></li>
+    <li><a href="#">Подпункт 2</a></li>
+  </ul>
+</div>`,
+    css: `.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-btn {
+  padding: 10px 20px;
+  background: #6c757d;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: white;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+  list-style: none;
+  border-radius: 6px;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown-content a {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover {
+  background: #f1f1f1;
+}`
+  },
+  'nav-sticky': {
+    title: 'Липкое меню',
+    desc: 'Меню, которое остаётся наверху при прокрутке.',
+    html: `<nav class="sticky-nav">
+  <a href="#">Главная</a>
+  <a href="#">О нас</a>
+  <a href="#">Контакты</a>
+</nav>`,
+    css: `.sticky-nav {
+  position: sticky;
+  top: 0;
+  background: #343a40;
+  padding: 10px;
+  display: flex;
+  gap: 20px;
+}
+.sticky-nav a {
+  color: white;
+  text-decoration: none;
+}`
+  },
+  'nav-mobile': {
+    title: 'Мобильное меню',
+    desc: 'Простое мобильное меню.',
+    html: `<div class="mobile-menu">
+  <button class="menu-toggle">☰</button>
+  <ul class="mobile-nav">
+    <li><a href="#">Главная</a></li>
+    <li><a href="#">О нас</a></li>
+    <li><a href="#">Контакты</a></li>
+  </ul>
+</div>`,
+    css: `.mobile-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: #343a40;
+  color: white;
+}
+.mobile-nav {
+  display: none;
+  list-style: none;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background: #343a40;
+  flex-direction: column;
+  padding: 10px;
+}
+.mobile-nav.active {
+  display: flex;
+}
+.menu-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}`,
+    js: `document.querySelector('.menu-toggle').addEventListener('click', () => {
+  document.querySelector('.mobile-nav').classList.toggle('active');
+});`
+  },
+  'nav-active': {
+    title: 'Активный пункт',
+    desc: 'Подсветка текущего пункта меню.',
+    html: `<ul class="active-nav">
+  <li><a href="#" class="active">Главная</a></li>
+  <li><a href="#">О нас</a></li>
+  <li><a href="#">Контакты</a></li>
+</ul>`,
+    css: `.active-nav {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+.active-nav a {
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 6px;
+}
+.active-nav .active {
+  background: #0d6efd;
+  color: white;
+}`,
+    js: `document.querySelectorAll('.active-nav a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelectorAll('.active-nav a').forEach(a => a.classList.remove('active'));
+    this.classList.add('active');
+  });
+});`
+  },
+
+  // Медиа
+  'img-responsive': {
+    title: 'Адаптивное изображение',
+    desc: 'Изображение, которое подстраивается под размер экрана.',
+    html: '<img src="https://placehold.co/600x400" alt="Пример" class="responsive-img" />',
+    css: `.responsive-img {
+  max-width: 100%;
+  height: auto;
+}`
+  },
+  'img-rounded': {
+    title: 'Круглое изображение',
+    desc: 'Круглое изображение с border-radius.',
+    html: '<img src="https://placehold.co/200x200" alt="Круг" class="rounded-img" />',
+    css: `.rounded-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}`
+  },
+  'video-embed': {
+    title: 'Встраиваемое видео',
+    desc: 'Видео из YouTube.',
+    html: '<iframe class="video-responsive" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>',
+    css: `.video-responsive {
+  width: 100%;
+  height: 300px;
+  border-radius: 8px;
+}`
+  },
+  'img-slider': {
+    title: 'Слайдер изображений',
+    desc: 'Простой слайдер с кнопками.',
+    html: `<div class="image-slider">
+  <img src="https://placehold.co/400x300" class="slider-img" />
+  <button class="slider-btn prev">←</button>
+  <button class="slider-btn next">→</button>
+</div>`,
+    js: `let currentImage = 0;
+const images = [
+  'https://placehold.co/400x300',
+  'https://placehold.co/400x300/ff0000',
+  'https://placehold.co/400x300/00ff00'
+];
+const imgElement = document.querySelector('.slider-img');
+document.querySelector('.next').addEventListener('click', () => {
+  currentImage = (currentImage + 1) % images.length;
+  imgElement.src = images[currentImage];
+});
+document.querySelector('.prev').addEventListener('click', () => {
+  currentImage = (currentImage - 1 + images.length) % images.length;
+  imgElement.src = images[currentImage];
+});`
+  },
+  'video-controls': {
+    title: 'Управление видео',
+    desc: 'Пауза и воспроизведение.',
+    html: `<video controls class="video-element" id="videoElement" width="400">
+  <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+  Ваш браузер не поддерживает видео.
+</video>
+<button class="video-play-btn" id="playBtn">▶️</button>`,
+    js: `const video = document.getElementById('videoElement');
+const playBtn = document.getElementById('playBtn');
+playBtn.addEventListener('click', () => {
+  if (video.paused) {
+    video.play();
+    playBtn.textContent = '⏸️';
+  } else {
+    video.pause();
+    playBtn.textContent = '▶️';
+  }
+});`
+  },
+
+  // Карточки
+  'card-basic': {
+    title: 'Простая карточка',
+    desc: 'Карточка с изображением, заголовком и описанием.',
+    html: `<div class="card">
+  <img src="https://placehold.co/200x150" alt="Карточка" />
+  <h3>Заголовок</h3>
+  <p>Описание карточки</p>
+</div>`,
+    css: `.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  width: 200px;
+  text-align: center;
+}
+.card img {
+  width: 100%;
+  border-radius: 6px;
+}`
+  },
+  'grid-cards': {
+    title: 'Сетка карточек',
+    desc: 'Расположение карточек в сетке.',
+    html: `<div class="card-grid">
+  <div class="card">
+    <img src="https://placehold.co/200x150" alt="Карточка" />
+    <h3>Заголовок 1</h3>
+    <p>Описание 1</p>
+  </div>
+  <div class="card">
+    <img src="https://placehold.co/200x150" alt="Карточка" />
+    <h3>Заголовок 2</h3>
+    <p>Описание 2</p>
+  </div>
+</div>`,
+    css: `.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+}
+.card img {
+  width: 100%;
+  border-radius: 6px;
+}`
+  },
+  'card-hover': {
+    title: 'Карточка с hover',
+    desc: 'При наведении карточка поднимается.',
+    html: `<div class="card card-hover">
+  <img src="https://placehold.co/200x150" alt="Карточка" />
+  <h3>Заголовок</h3>
+  <p>Описание карточки</p>
+</div>`,
+    css: `.card-hover {
+  transition: transform 0.3s;
+}
+.card-hover:hover {
+  transform: translateY(-10px);
+}`
+  },
+  'card-expand': {
+    title: 'Раскрывающаяся карточка',
+    desc: 'Карточка, которая раскрывается по клику.',
+    html: `<div class="expanding-card">
+  <h3>Кликни меня</h3>
+  <div class="card-content">
+    <p>Секретное содержимое!</p>
+  </div>
+</div>`,
+    css: `.expanding-card .card-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s;
+}
+.expanding-card.active .card-content {
+  max-height: 200px;
+}`,
+    js: `document.querySelector('.expanding-card').addEventListener('click', function() {
+  this.classList.toggle('active');
+});`
+  },
+  'card-drag': {
+    title: 'Перетаскивание карточки',
+    desc: 'Карточка, которую можно перетащить.',
+    html: `<div class="draggable-card" draggable="true" style="position: absolute; top: 100px; left: 100px; width: 150px; height: 100px; background: #0d6efd; color: white; display: flex; align-items: center; justify-content: center;">
+  Перетащи меня
+</div>`,
+    js: `let card = document.querySelector('.draggable-card');
+let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+card.onmousedown = dragMouseDown;
+
+function dragMouseDown(e) {
+  e = e || window.event;
+  e.preventDefault();
+  pos3 = e.clientX;
+  pos4 = e.clientY;
+  document.onmouseup = closeDragElement;
+  document.onmousemove = elementDrag;
+}
+
+function elementDrag(e) {
+  e = e || window.event;
+  e.preventDefault();
+  pos1 = pos3 - e.clientX;
+  pos2 = pos4 - e.clientY;
+  pos3 = e.clientX;
+  pos4 = e.clientY;
+  card.style.top = (card.offsetTop - pos2) + "px";
+  card.style.left = (card.offsetLeft - pos1) + "px";
+}
+
+function closeDragElement() {
+  document.onmouseup = null;
+  document.onmousemove = null;
+}`
+  },
+
+  // Анимации
+  'transition-fade': {
+    title: 'Плавное появление',
+    desc: 'Элемент плавно появляется при наведении.',
+    html: '<div class="fade-element">Наведи на меня</div>',
+    css: `.fade-element {
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+.fade-element:hover {
+  opacity: 1;
+}`
+  },
+  'animation-bounce': {
+    title: 'Прыжок',
+    desc: 'Анимация прыжка при наведении.',
+    html: '<div class="bounce-element">Прыгни!</div>',
+    css: `@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+.bounce-element {
+  display: inline-block;
+  padding: 10px;
+  background: #0d6efd;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.bounce-element:hover {
+  animation: bounce 0.5s ease infinite;
+}`
+  },
+  'keyframes-spin': {
+    title: 'Вращение',
+    desc: 'Элемент вращается по кругу.',
+    html: '<div class="spin-element">Крутись!</div>',
+    css: `@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.spin-element {
+  width: 50px;
+  height: 50px;
+  background: #0d6efd;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+}`
+  },
+  'js-animate': {
+    title: 'JS-анимация',
+    desc: 'Анимация с помощью JavaScript.',
+    html: '<div class="js-animated-box" id="animatedBox" style="width: 50px; height: 50px; background: #0d6efd;"></div>',
+    js: `const box = document.getElementById('animatedBox');
+let pos = 0;
+const id = setInterval(frame, 5);
+function frame() {
+  if (pos === 350) {
+    clearInterval(id);
+  } else {
+    pos++;
+    box.style.left = pos + 'px';
+  }
+}`
+  },
+  'js-tween': {
+    title: 'Плавный tween',
+    desc: 'Плавное перемещение с помощью JS.',
+    html: '<div class="tween-box" id="tweenBox" style="width: 50px; height: 50px; background: #28a745; position: relative;"></div>',
+    js: `const box = document.getElementById('tweenBox');
+let start = 0;
+const duration = 1000;
+const startTime = performance.now();
+
+function animate(currentTime) {
+  const elapsed = currentTime - startTime;
+  const progress = Math.min(elapsed / duration, 1);
+  const pos = progress * 350;
+  box.style.left = pos + 'px';
+  if (progress < 1) {
+    requestAnimationFrame(animate);
+  }
+}
+requestAnimationFrame(animate);`
+  },
+
+  // Темы
+  'theme-variables': {
+    title: 'CSS-переменные',
+    desc: 'Использование CSS-переменных для темы.',
+    html: '<div class="theme-demo">Пример с переменными</div>',
+    css: `:root {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+}
+[data-theme="dark"] {
+  --bg-color: #222222;
+  --text-color: #ffffff;
+}
+.theme-demo {
+  background: var(--bg-color);
+  color: var(--text-color);
+  padding: 20px;
+  border-radius: 8px;
+}`
+  },
+  'theme-class': {
+    title: 'Переключение класса',
+    desc: 'Переключение темы через класс.',
+    html: '<div class="theme-class-demo">Тема через класс</div>',
+    css: `.theme-class-demo {
+  background: #ffffff;
+  color: #333333;
+  padding: 20px;
+  border-radius: 8px;
+}
+.theme-class-demo.dark {
+  background: #222222;
+  color: #ffffff;
+}`
+  },
+  'theme-toggle': {
+    title: 'Переключение темы',
+    desc: 'Изменение темы сайта на светлую/тёмную.',
+    html: '<button class="theme-toggle-btn">Сменить тему</button>',
+    css: `.theme-toggle-btn {
+  padding: 10px 20px;
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}`,
+    js: `document.querySelector('.theme-toggle-btn').addEventListener('click', () => {
+  document.body.classList.toggle('dark-theme');
+});`
+  },
+  'theme-storage': {
+    title: 'Сохранение темы',
+    desc: 'Сохранение темы в localStorage.',
+    html: '<button class="theme-storage-btn">Сменить тему</button>',
+    js: `const themeBtn = document.querySelector('.theme-storage-btn');
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme === 'dark') {
+  document.body.classList.add('dark-theme');
+}
+themeBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark-theme');
+  const isDark = document.body.classList.contains('dark-theme');
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+});`
+  },
+
+  // Модальные окна
+  'modal-basic': {
+    title: 'Простая модалка',
+    desc: 'Модальное окно с CSS-анимацией.',
+    html: `<button class="modal-open-btn">Открыть</button>
+<div class="modal-overlay" style="display:none;">
+  <div class="modal-content">
+    <h3>Модальное окно</h3>
+    <p>Содержимое модалки</p>
+    <button class="modal-close-btn">Закрыть</button>
+  </div>
+</div>`,
+    css: `.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.modal-overlay.active {
+  opacity: 1;
+}
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 500px;
+}`
+  },
+  'tooltip-basic': {
+    title: 'Подсказка',
+    desc: 'Простая подсказка при наведении.',
+    html: `<div class="tooltip">Наведи
+  <span class="tooltip-text">Подсказка</span>
+</div>`,
+    css: `.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+.tooltip .tooltip-text {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}`
+  },
+  'modal-js': {
+    title: 'JS-модалка',
+    desc: 'Модальное окно с JavaScript.',
+    html: `<button class="modal-js-open">Открыть</button>
+<div class="modal-js-overlay" style="display:none;">
+  <div class="modal-js-content">
+    <h3>JS-модалка</h3>
+    <p>Содержимое</p>
+    <button class="modal-js-close">Закрыть</button>
+  </div>
+</div>`,
+    css: `.modal-js-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal-js-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 500px;
+}`,
+    js: `document.querySelector('.modal-js-open').addEventListener('click', () => {
+  document.querySelector('.modal-js-overlay').style.display = 'flex';
+});
+document.querySelector('.modal-js-close').addEventListener('click', () => {
+  document.querySelector('.modal-js-overlay').style.display = 'none';
+});`
+  },
+  'tooltip-js': {
+    title: 'JS-подсказка',
+    desc: 'Подсказка, показываемая по клику.',
+    html: `<button class="tooltip-js-btn">Показать подсказку</button>
+<div class="tooltip-js-content" style="display:none; background: #555; color: white; padding: 5px; border-radius: 6px; margin-top: 5px;">JS-подсказка</div>`,
+    js: `document.querySelector('.tooltip-js-btn').addEventListener('click', () => {
+  const tooltip = document.querySelector('.tooltip-js-content');
+  tooltip.style.display = tooltip.style.display === 'none' ? 'block' : 'none';
+});`
+  },
+
+  // Адаптивность
+  'responsive-grid': {
+    title: 'Адаптивная сетка',
+    desc: 'Сетка, которая меняет количество колонок при изменении ширины экрана.',
+    html: `<div class="responsive-grid">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+</div>`,
+    css: `.responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+.responsive-grid div {
+  padding: 15px;
+  background: #e9ecef;
+  text-align: center;
+  border-radius: 6px;
+}`
+  },
+  'media-queries': {
+    title: 'Media queries',
+    desc: 'Изменение стилей при разных размерах экрана.',
+    html: `<div class="mq-demo">Адаптивный текст</div>`,
+    css: `.mq-demo {
+  font-size: 1rem;
+}
+@media (min-width: 768px) {
+  .mq-demo {
+    font-size: 1.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .mq-demo {
+    font-size: 2rem;
+  }
+}`
+  },
+  'resize-handler': {
+    title: 'Обработчик ресайза',
+    desc: 'Отслеживание изменения размера окна.',
+    html: `<p id="resizeText">Ширина окна: <span id="widthDisplay">0</span>px</p>`,
+    js: `function updateWidth() {
+  document.getElementById('widthDisplay').textContent = window.innerWidth;
+}
+updateWidth();
+window.addEventListener('resize', updateWidth);`
+  },
+  'touch-events': {
+    title: 'События касания',
+    desc: 'Обработка touch-событий.',
+    html: `<div class="touch-area" id="touchArea" style="width: 200px; height: 100px; background: #0d6efd; display: flex; align-items: center; justify-content: center; color: white;">Коснись меня</div>`,
+    js: `const touchArea = document.getElementById('touchArea');
+touchArea.addEventListener('touchstart', () => {
+  touchArea.textContent = 'Коснулись!';
+  touchArea.style.background = '#28a745';
+});
+touchArea.addEventListener('touchend', () => {
+  setTimeout(() => {
+    touchArea.textContent = 'Коснись меня';
+    touchArea.style.background = '#0d6efd';
+  }, 500);
+});`
+  },
+
+  // Доступность
+  'aria-label': {
+    title: 'aria-label',
+    desc: 'Добавление доступности к элементам с помощью ARIA-атрибутов.',
+    html: '<button aria-label="Закрыть">✕</button>',
+    css: `button {
+  padding: 8px 12px;
+  border: none;
+  background: #dc3545;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+}`
+  },
+  'focus-styles': {
+    title: 'Стили фокуса',
+    desc: 'Выделение элемента при фокусе.',
+    html: '<input type="text" class="focus-input" placeholder="Фокусное поле" />',
+    css: `.focus-input {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+}
+.focus-input:focus {
+  border-color: #0d6efd;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+}`
+  },
+  'focus-trap': {
+    title: 'Фокусный замок',
+    desc: 'Фокус не выходит за пределы модального окна.',
+    html: `<button class="focus-trap-open">Открыть</button>
+<div class="focus-trap-modal" style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border: 1px solid #ccc;">
+  <input type="text" placeholder="Поле 1" tabindex="1" />
+  <input type="text" placeholder="Поле 2" tabindex="2" />
+  <button class="focus-trap-close" tabindex="3">Закрыть</button>
+</div>`,
+    js: `let modal = document.querySelector('.focus-trap-modal');
+let openBtn = document.querySelector('.focus-trap-open');
+let closeBtn = document.querySelector('.focus-trap-close');
+
+openBtn.addEventListener('click', () => {
+  modal.style.display = 'block';
+  modal.querySelector('input[tabindex="1"]').focus();
+});
+
+closeBtn.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
+
+modal.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    modal.style.display = 'none';
+  }
+});`
+  },
+  'skip-link': {
+    title: 'Ссылка пропуска',
+    desc: 'Ссылка, позволяющая пропустить навигацию.',
+    html: `<a href="#main-content" class="skip-link">Пропустить навигацию</a>
+<nav>
+  <a href="#">Ссылка 1</a>
+  <a href="#">Ссылка 2</a>
+</nav>
+<div id="main-content">
+  <h2>Основной контент</h2>
+  <p>Тут основной контент.</p>
+</div>`,
+    css: `.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+.skip-link:focus {
+  top: 6px;
+}`
+  },
+
+  // UX
+  'tooltip-css': {
+    title: 'CSS-подсказка',
+    desc: 'Всплывающая подсказка без JavaScript.',
+    html: `<div class="tooltip-css">Наведи
+  <span class="tooltip-css-text">Подсказка</span>
+</div>`,
+    css: `.tooltip-css {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+.tooltip-css .tooltip-css-text {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.tooltip-css:hover .tooltip-css-text {
+  visibility: visible;
+  opacity: 1;
+}`
+  },
+  'loader-css': {
+    title: 'CSS-лоадер',
+    desc: 'Анимированный индикатор загрузки.',
+    html: '<div class="loader-css"></div>',
+    css: `.loader-css {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #0d6efd;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}`
+  },
+  'tooltip-js': {
+    title: 'JS-подсказка',
+    desc: 'Подсказка, показываемая через JavaScript.',
+    html: `<button class="tooltip-js-btn">Показать</button>
+<div class="tooltip-js-content" style="display:none; background: #555; color: white; padding: 5px; border-radius: 6px; margin-top: 5px;">JS-подсказка</div>`,
+    js: `document.querySelector('.tooltip-js-btn').addEventListener('click', () => {
+  const tooltip = document.querySelector('.tooltip-js-content');
+  tooltip.style.display = tooltip.style.display === 'none' ? 'block' : 'none';
+});`
+  },
+  'loader-js': {
+    title: 'JS-лоадер',
+    desc: 'Индикатор загрузки с JS.',
+    html: `<button class="loader-js-btn">Загрузить</button>
+<div class="loader-js" style="display:none; border: 5px solid #f3f3f3; border-top: 5px solid #0d6efd; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite;"></div>`,
+    css: `@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}`,
+    js: `document.querySelector('.loader-js-btn').addEventListener('click', () => {
+  const loader = document.querySelector('.loader-js');
+  loader.style.display = 'block';
+  setTimeout(() => {
+    loader.style.display = 'none';
+  }, 2000);
+});`
+  },
+
+  // Виджеты
+  'counter-css': {
+    title: 'CSS-счётчик',
+    desc: 'Счётчик, реализованный на CSS.',
+    html: `<div class="counter-css">
+  <button class="counter-btn-css">Клик: <span>0</span></button>
+</div>`,
+    css: `.counter-css .counter-btn-css {
+  padding: 10px 20px;
+  background: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}`
+  },
+  'progress-bar': {
+    title: 'Прогресс-бар',
+    desc: 'Индикатор выполнения.',
+    html: `<div class="progress-container">
+  <div class="progress-bar" style="width: 30%; height: 20px; background: #0d6efd;"></div>
+</div>`,
+    css: `.progress-container {
+  width: 100%;
+  background: #e9ecef;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.progress-bar {
+  height: 100%;
+  background: #0d6efd;
+  transition: width 0.3s;
+}`
+  },
+  'counter-js': {
+    title: 'JS-счётчик',
+    desc: 'Интерактивный счётчик кликов.',
+    html: '<button class="counter-btn">Кликнуто: 0</button>',
+    js: `let count = 0;
+document.querySelector('.counter-btn').addEventListener('click', () => {
+  count++;
+  document.querySelector('.counter-btn').textContent = \`Кликнуто: \${count}\`;
+});`
+  },
+  'slider-js': {
+    title: 'JS-слайдер',
+    desc: 'Простой слайдер значений.',
+    html: `<input type="range" min="0" max="100" value="50" class="slider-js" id="slider" />
+<p>Значение: <span id="sliderValue">50</span></p>`,
+    js: `const slider = document.getElementById('slider');
+const output = document.getElementById('sliderValue');
+output.textContent = slider.value;
+
+slider.oninput = function() {
+  output.textContent = this.value;
+};`
   }
 };
 
-// Переключение разделов
-sectionBtns.forEach(btn => {
+// Переключение вкладок (CSS/JS) в каждом разделе
+document.querySelectorAll('.section-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-    sectionBtns.forEach(b => b.classList.remove('active'));
+    const section = btn.dataset.section;
+    const sectionId = btn.closest('section').id;
+    const nav = btn.closest('.section-nav');
+    const detailBox = nav.closest('.section-content').querySelector('.detail-box');
+
+    // Убираем активные классы
+    nav.querySelectorAll('.section-btn').forEach(b => b.classList.remove('active'));
+    nav.closest('.section-content').querySelectorAll('.examples').forEach(ex => ex.classList.remove('active'));
+
+    // Добавляем активный класс кнопке
     btn.classList.add('active');
 
-    const section = btn.dataset.section;
-    cssExamples.classList.toggle('active', section === 'css');
-    jsExamples.classList.toggle('active', section === 'js');
-
-    // Сбросить детали на первый пример текущего раздела
-    const firstExample = section === 'css' ? 'css-basic' : 'js-alert';
-    showExample(firstExample);
+    // Показываем нужные примеры
+    const examplesId = `${sectionId}-${section}-examples`;
+    const examplesEl = document.getElementById(examplesId);
+    if (examplesEl) {
+      examplesEl.classList.add('active');
+      // Показываем первый пример в этой вкладке
+      const firstExample = examplesEl.querySelector('.example-card');
+      if (firstExample) {
+        const exampleId = firstExample.dataset.example;
+        showExample(exampleId, detailBox);
+      }
+    }
   });
 });
 
@@ -212,11 +1256,12 @@ sectionBtns.forEach(btn => {
 document.querySelectorAll('.example-card').forEach(card => {
   card.addEventListener('click', () => {
     const exampleId = card.dataset.example;
-    showExample(exampleId);
+    const detailBox = card.closest('.section-content').querySelector('.detail-box');
+    showExample(exampleId, detailBox);
   });
 });
 
-function showExample(id) {
+function showExample(id, detailBox) {
   const ex = examplesData[id];
   if (!ex) return;
 
@@ -238,7 +1283,7 @@ function showExample(id) {
   `;
 
   // Находим блок кода и безопасно вставляем содержимое
-  const codeBlock = document.querySelector('.code-block');
+  const codeBlock = detailBox.querySelector('.code-block');
   let fullCode = escapedHtml + '\n\n<style>\n' + escapedCss + '\n</style>';
   if (codeJs) {
     fullCode += '\n\n<script>\n' + escapedJs + '\n</script>';
@@ -273,6 +1318,134 @@ function showExample(id) {
         btn.textContent = `Кликов: ${count}`;
       });
     }
+  } else if (id === 'typo-change') {
+    const p = document.getElementById('textChange');
+    if (p) {
+      p.addEventListener('click', () => {
+        p.textContent = 'Текст изменился!';
+      });
+    }
+  } else if (id === 'form-validation') {
+    const form = document.querySelector('.validated-form');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Форма отправлена!');
+      });
+    }
+  } else if (id === 'form-dynamic') {
+    const btn = document.getElementById('addField');
+    if (btn) {
+      btn.addEventListener('click', () => {
+        const container = document.querySelector('.fields-container');
+        const newField = document.createElement('input');
+        newField.type = 'text';
+        newField.placeholder = 'Поле ' + (container.children.length + 1);
+        container.appendChild(newField);
+      });
+    }
+  } else if (id === 'nav-mobile') {
+    const toggle = document.querySelector('.menu-toggle');
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        document.querySelector('.mobile-nav').classList.toggle('active');
+      });
+    }
+  } else if (id === 'nav-active') {
+    document.querySelectorAll('.active-nav a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelectorAll('.active-nav a').forEach(a => a.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  } else if (id === 'img-slider') {
+    let currentImage = 0;
+    const images = [
+      'https://placehold.co/400x300',
+      'https://placehold.co/400x300/ff0000',
+      'https://placehold.co/400x300/00ff00'
+    ];
+    const imgElement = document.querySelector('.slider-img');
+    document.querySelector('.next').addEventListener('click', () => {
+      currentImage = (currentImage + 1) % images.length;
+      imgElement.src = images[currentImage];
+    });
+    document.querySelector('.prev').addEventListener('click', () => {
+      currentImage = (currentImage - 1 + images.length) % images.length;
+      imgElement.src = images[currentImage];
+    });
+  } else if (id === 'video-controls') {
+    const video = document.getElementById('videoElement');
+    const playBtn = document.getElementById('playBtn');
+    playBtn.addEventListener('click', () => {
+      if (video.paused) {
+        video.play();
+        playBtn.textContent = '⏸️';
+      } else {
+        video.pause();
+        playBtn.textContent = '▶️';
+      }
+    });
+  } else if (id === 'card-expand') {
+    document.querySelector('.expanding-card').addEventListener('click', function() {
+      this.classList.toggle('active');
+    });
+  } else if (id === 'theme-storage') {
+    const themeBtn = document.querySelector('.theme-storage-btn');
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme === 'dark') {
+      document.body.classList.add('dark-theme');
+    }
+    themeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-theme');
+      const isDark = document.body.classList.contains('dark-theme');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+  } else if (id === 'modal-js') {
+    document.querySelector('.modal-js-open').addEventListener('click', () => {
+      document.querySelector('.modal-js-overlay').style.display = 'flex';
+    });
+    document.querySelector('.modal-js-close').addEventListener('click', () => {
+      document.querySelector('.modal-js-overlay').style.display = 'none';
+    });
+  } else if (id === 'resize-handler') {
+    function updateWidth() {
+      document.getElementById('widthDisplay').textContent = window.innerWidth;
+    }
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+  } else if (id === 'touch-events') {
+    const touchArea = document.getElementById('touchArea');
+    touchArea.addEventListener('touchstart', () => {
+      touchArea.textContent = 'Коснулись!';
+      touchArea.style.background = '#28a745';
+    });
+    touchArea.addEventListener('touchend', () => {
+      setTimeout(() => {
+        touchArea.textContent = 'Коснись меня';
+        touchArea.style.background = '#0d6efd';
+      }, 500);
+    });
+  } else if (id === 'tooltip-js') {
+    document.querySelector('.tooltip-js-btn').addEventListener('click', () => {
+      const tooltip = document.querySelector('.tooltip-js-content');
+      tooltip.style.display = tooltip.style.display === 'none' ? 'block' : 'none';
+    });
+  } else if (id === 'counter-js') {
+    let count = 0;
+    document.querySelector('.counter-btn').addEventListener('click', () => {
+      count++;
+      document.querySelector('.counter-btn').textContent = `Кликнуто: ${count}`;
+    });
+  } else if (id === 'slider-js') {
+    const slider = document.getElementById('slider');
+    const output = document.getElementById('sliderValue');
+    output.textContent = slider.value;
+
+    slider.oninput = function() {
+      output.textContent = this.value;
+    };
   }
 }
 
@@ -295,5 +1468,18 @@ function escapeHtml(str) {
     .replace(/'/g, '&#039;');
 }
 
-// Инициализация
-showExample('css-basic');
+// Инициализация: показываем первый пример в каждом разделе
+document.querySelectorAll('.section-btn.active').forEach(btn => {
+  const section = btn.dataset.section;
+  const sectionId = btn.closest('section').id;
+  const examplesId = `${sectionId}-${section}-examples`;
+  const examplesEl = document.getElementById(examplesId);
+  if (examplesEl) {
+    const firstExample = examplesEl.querySelector('.example-card');
+    if (firstExample) {
+      const exampleId = firstExample.dataset.example;
+      const detailBox = btn.closest('.section-content').querySelector('.detail-box');
+      showExample(exampleId, detailBox);
+    }
+  }
+});
