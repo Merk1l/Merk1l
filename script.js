@@ -1076,12 +1076,16 @@ modal.addEventListener('keydown', (e) => {
   left: 6px;
   background: #000;
   color: #fff;
-  padding: 8px;
+  padding: 8px 16px;
   text-decoration: none;
   border-radius: 4px;
+  font-size: 0.9rem;
+  transition: top 0.3s;
 }
 .skip-link:focus {
   top: 6px;
+  outline: 2px solid #0d6efd;
+  outline-offset: 2px;
 }`
   },
 
