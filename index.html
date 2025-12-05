@@ -27,12 +27,11 @@
       <li><a href="#media">5. Изображения и медиа</a></li>
       <li><a href="#cards">6. Карточки и сетки</a></li>
       <li><a href="#animations">7. Анимации и переходы</a></li>
-      <li><a href="#themes">8. Темы и персонализация</a></li>
-      <li><a href="#modals">9. Модальные окна и всплывающие элементы</a></li>
-      <li><a href="#responsive">10. Адаптивность и мобильность</a></li>
-      <li><a href="#accessibility">11. Доступность (a11y)</a></li>
-      <li><a href="#ux">12. UX-улучшения</a></li>
-      <li><a href="#widgets">13. Интерактивные виджеты</a></li>
+      <!-- Убран: 8. Темы и персонализация -->
+      <li><a href="#modals">8. Модальные окна и всплывающие элементы</a></li> <!-- Теперь 8 -->
+      <li><a href="#responsive">9. Адаптивность и мобильность</a></li> <!-- Теперь 9 -->
+      <li><a href="#ux">11. UX-улучшения</a></li> <!-- Теперь 11 -->
+      <li><a href="#widgets">12. Интерактивные виджеты</a></li> <!-- Теперь 12 -->
     </ul>
   </nav>
 
@@ -56,17 +55,11 @@
             <p>Градиентный текст</p>
             <button class="btn-basic">Пример</button>
           </div>
-          <div class="example-card" data-example="typo-shadow">
-            <p>Текст с тенями</p>
-            <button class="btn-basic">Пример</button>
-          </div>
+          <!-- Убран: 'typo-shadow' -->
         </div>
 
         <div class="examples" id="typography-js-examples">
-          <div class="example-card" data-example="typo-change">
-            <p>Изменение текста</p>
-            <button class="btn-basic">Пример</button>
-          </div>
+          <!-- Убран: 'typo-change' -->
           <div class="example-card" data-example="typo-typewriter">
             <p>Печатающийся текст</p>
             <button class="btn-basic">Пример</button>
@@ -74,18 +67,7 @@
         </div>
 
         <div class="detail-box" id="typo-detail">
-          <h2>Адаптивный текст</h2>
-          <p>Шрифт изменяется в зависимости от размера экрана.</p>
-          <div class="preview-area">
-            <p class="responsive-text">Этот текст адаптируется под размер экрана</p>
-          </div>
-          <div class="code-block"><p class="responsive-text">Этот текст адаптируется под размер экрана</p>
-
-<style>
-.responsive-text {
-  font-size: clamp(1rem, 4vw, 2.5rem);
-}
-</style></div>
+          <!-- Содержимое будет подставляться JS -->
         </div>
       </div>
     </section>
@@ -130,29 +112,7 @@
         </div>
 
         <div class="detail-box" id="buttons-detail">
-          <h2>Базовая кнопка на CSS</h2>
-          <p>Простейшая кнопка с использованием базовых свойств CSS: padding, border-radius, background.</p>
-          <div class="preview-area">
-            <button class="btn-basic">Пример кнопки</button>
-          </div>
-          <div class="code-block"><button class="btn-basic">Нажми</button>
-
-<style>
-.btn-basic {
-  padding: 12px 24px;
-  background: #0d6efd;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.2s;
-}
-.btn-basic:hover {
-  background: #0b5ed7;
-  transform: scale(1.05);
-}
-</style></div>
+          <!-- Содержимое будет подставляться JS -->
         </div>
       </div>
     </section>
@@ -171,14 +131,11 @@
             <p>Простая форма</p>
             <button class="btn-basic">Пример</button>
           </div>
-          <div class="example-card" data-example="form-styled">
+          <div class="example-card" data-example="form-styled"> <!-- Исправлено: теперь указывает на 'form-styled' -->
             <p>Стилизованная форма</p>
             <button class="btn-basic">Пример</button>
           </div>
-          <div class="example-card" data-example="form-grid">
-            <p>Форма в сетке</p>
-            <button class="btn-basic">Пример</button>
-          </div>
+          <!-- Убран: 'form-grid' -->
         </div>
 
         <div class="examples" id="forms-js-examples">
@@ -193,33 +150,7 @@
         </div>
 
         <div class="detail-box" id="forms-detail">
-          <h2>Простая форма</h2>
-          <p>Базовая HTML-форма с полями ввода и кнопкой.</p>
-          <div class="preview-area">
-            <form>
-              <input type="text" placeholder="Имя" />
-              <input type="email" placeholder="Email" />
-              <button type="submit">Отправить</button>
-            </form>
-          </div>
-          <div class="code-block"><form>
-  <input type="text" placeholder="Имя" />
-  <input type="email" placeholder="Email" />
-  <button type="submit">Отправить</button>
-</form>
-
-<style>
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-input, button {
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-</style></div>
+          <!-- Содержимое будет подставляться JS -->
         </div>
       </div>
     </section>
@@ -260,34 +191,7 @@ input, button {
         </div>
 
         <div class="detail-box" id="nav-detail">
-          <h2>Горизонтальное меню</h2>
-          <p>Простое меню в строку.</p>
-          <div class="preview-area">
-            <ul class="nav-menu">
-              <li><a href="#">Главная</a></li>
-              <li><a href="#">О нас</a></li>
-              <li><a href="#">Контакты</a></li>
-            </ul>
-          </div>
-          <div class="code-block"><ul class="nav-menu">
-  <li><a href="#">Главная</a></li>
-  <li><a href="#">О нас</a></li>
-  <li><a href="#">Контакты</a></li>
-</ul>
-
-<style>
-.nav-menu {
-  display: flex;
-  list-style: none;
-  gap: 20px;
-}
-.nav-menu a {
-  text-decoration: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  background: #e9ecef;
-}
-</style></div>
+          <!-- Содержимое будет подставляться JS -->
         </div>
       </div>
     </section>
@@ -328,19 +232,7 @@ input, button {
         </div>
 
         <div class="detail-box" id="media-detail">
-          <h2>Адаптивное изображение</h2>
-          <p>Изображение, которое подстраивается под размер экрана.</p>
-          <div class="preview-area">
-            <img src="https://placehold.co/600x400" alt="Пример" class="responsive-img" />
-          </div>
-          <div class="code-block"><img src="https://placehold.co/600x400" alt="Пример" class="responsive-img" />
-
-<style>
-.responsive-img {
-  max-width: 100%;
-  height: auto;
-}
-</style></div>
+          <!-- Содержимое будет подставляться JS -->
         </div>
       </div>
     </section>
@@ -355,60 +247,15 @@ input, button {
         </div>
 
         <div class="examples active" id="cards-css-examples">
-          <div class="example-card" data-example="card-basic">
-            <p>Простая карточка</p>
-            <button class="btn-basic">Пример</button>
-          </div>
-          <div class="example-card" data-example="grid-cards">
-            <p>Сетка карточек</p>
-            <button class="btn-basic">Пример</button>
-          </div>
-          <div class="example-card" data-example="card-hover">
-            <p>Карточка с hover</p>
-            <button class="btn-basic">Пример</button>
-          </div>
+          <!-- Убраны все примеры CSS-карточек -->
         </div>
 
         <div class="examples" id="cards-js-examples">
-          <div class="example-card" data-example="card-expand">
-            <p>Раскрывающаяся карточка</p>
-            <button class="btn-basic">Пример</button>
-          </div>
-          <div class="example-card" data-example="card-drag">
-            <p>Перетаскивание карточки</p>
-            <button class="btn-basic">Пример</button>
-          </div>
+          <!-- Убраны все примеры JS-карточек -->
         </div>
 
         <div class="detail-box" id="cards-detail">
-          <h2>Простая карточка</h2>
-          <p>Карточка с изображением, заголовком и описанием.</p>
-          <div class="preview-area">
-            <div class="card">
-              <img src="https://placehold.co/200x150" alt="Карточка" />
-              <h3>Заголовок</h3>
-              <p>Описание карточки</p>
-            </div>
-          </div>
-          <div class="code-block"><div class="card">
-  <img src="https://placehold.co/200x150" alt="Карточка" />
-  <h3>Заголовок</h3>
-  <p>Описание карточки</p>
-</div>
-
-<style>
-.card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 15px;
-  width: 200px;
-  text-align: center;
-}
-.card img {
-  width: 100%;
-  border-radius: 6px;
-}
-</style></div>
+          <!-- Содержимое будет подставляться JS -->
         </div>
       </div>
     </section>
@@ -438,99 +285,23 @@ input, button {
         </div>
 
         <div class="examples" id="animations-js-examples">
-          <div class="example-card" data-example="js-animate">
-            <p>JS-анимация</p>
-            <button class="btn-basic">Пример</button>
-          </div>
+          <!-- Убран: 'js-animate' -->
           <div class="example-card" data-example="js-tween">
             <p>Плавный tween</p>
             <button class="btn-basic">Пример</button>
           </div>
+          <!-- Убран: 'js-tween' дубль, оставлен один -->
         </div>
 
         <div class="detail-box" id="anim-detail">
-          <h2>Плавное появление</h2>
-          <p>Элемент плавно появляется при наведении.</p>
-          <div class="preview-area">
-            <div class="fade-element">Наведи на меня</div>
-          </div>
-          <div class="code-block"><div class="fade-element">Наведи на меня</div>
-
-<style>
-.fade-element {
-  opacity: 0.5;
-  transition: opacity 0.3s;
-}
-.fade-element:hover {
-  opacity: 1;
-}
-</style></div>
+          <!-- Содержимое будет подставляться JS -->
         </div>
       </div>
     </section>
 
-    <!-- Раздел 8: Темы и персонализация -->
-    <section id="themes">
-      <h2>8. Темы и персонализация</h2>
-      <div class="section-content">
-        <div class="section-nav">
-          <button class="section-btn active" data-section="css">CSS-темы</button>
-          <button class="section-btn" data-section="js">JavaScript-темы</button>
-        </div>
-
-        <div class="examples active" id="themes-css-examples">
-          <div class="example-card" data-example="theme-variables">
-            <p>CSS-переменные</p>
-            <button class="btn-basic">Пример</button>
-          </div>
-          <div class="example-card" data-example="theme-class">
-            <p>Переключение класса</p>
-            <button class="btn-basic">Пример</button>
-          </div>
-        </div>
-
-        <div class="examples" id="themes-js-examples">
-          <div class="example-card" data-example="theme-toggle">
-            <p>Переключение темы</p>
-            <button class="btn-basic">Пример</button>
-          </div>
-          <div class="example-card" data-example="theme-storage">
-            <p>Сохранение темы</p>
-            <button class="btn-basic">Пример</button>
-          </div>
-        </div>
-
-        <div class="detail-box" id="themes-detail">
-          <h2>Переключение темы</h2>
-          <p>Изменение темы сайта на светлую/тёмную.</p>
-          <div class="preview-area">
-            <button class="theme-toggle-btn">Сменить тему</button>
-          </div>
-          <div class="code-block"><button class="theme-toggle-btn">Сменить тему</button>
-
-<style>
-.theme-toggle-btn {
-  padding: 10px 20px;
-  background: #6c757d;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-</style>
-
-<script>
-document.querySelector('.theme-toggle-btn').addEventListener('click', () => {
-  document.body.classList.toggle('dark-theme');
-});
-</script></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Раздел 9: Модальные окна и всплывающие элементы -->
+    <!-- Раздел 8: Модальные окна и всплывающие элементы -->
     <section id="modals">
-      <h2>9. Модальные окна и всплывающие элементы</h2>
+      <h2>8. Модальные окна и всплывающие элементы</h2>
       <div class="section-content">
         <div class="section-nav">
           <button class="section-btn active" data-section="css">CSS-модалки</button>
@@ -538,12 +309,10 @@ document.querySelector('.theme-toggle-btn').addEventListener('click', () => {
         </div>
 
         <div class="examples active" id="modals-css-examples">
-          <div class="example-card" data-example="modal-basic">
-            <p>Простая модалка</p>
-            <button class="btn-basic">Пример</button>
-          </div>
-          <div class="example-card" data-example="tooltip-basic">
-            <p>Подсказка</p>
+          <!-- Убран: 'modal-basic' -->
+          <!-- Заменено: 'tooltip-basic' на 'pulse-button' (название изменено на 'Модалка') -->
+          <div class="example-card" data-example="pulse-button">
+            <p>Модалка</p> <!-- Название изменено -->
             <button class="btn-basic">Пример</button>
           </div>
         </div>
@@ -560,64 +329,14 @@ document.querySelector('.theme-toggle-btn').addEventListener('click', () => {
         </div>
 
         <div class="detail-box" id="modals-detail">
-          <h2>Простая модальное окно</h2>
-          <p>Всплывающее окно поверх контента.</p>
-          <div class="preview-area">
-            <button class="modal-open-btn">Открыть модальное окно</button>
-            <div class="modal-overlay" style="display:none;">
-              <div class="modal-content">
-                <h3>Модальное окно</h3>
-                <p>Это всплывающий контент</p>
-                <button class="modal-close-btn">Закрыть</button>
-              </div>
-            </div>
-          </div>
-          <div class="code-block"><button class="modal-open-btn">Открыть модальное окно</button>
-<div class="modal-overlay" style="display:none;">
-  <div class="modal-content">
-    <h3>Модальное окно</h3>
-    <p>Это всплывающий контент</p>
-    <button class="modal-close-btn">Закрыть</button>
-  </div>
-</div>
-
-<style>
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  width: 80%;
-  max-width: 500px;
-}
-</style>
-
-<script>
-document.querySelector('.modal-open-btn').addEventListener('click', () => {
-  document.querySelector('.modal-overlay').style.display = 'flex';
-});
-document.querySelector('.modal-close-btn').addEventListener('click', () => {
-  document.querySelector('.modal-overlay').style.display = 'none';
-});
-</script></div>
+          <!-- Содержимое будет подставляться JS -->
         </div>
       </div>
     </section>
 
-    <!-- Раздел 10: Адаптивность и мобильность -->
+    <!-- Раздел 9: Адаптивность и мобильность -->
     <section id="responsive">
-      <h2>10. Адаптивность и мобильность</h2>
+      <h2>9. Адаптивность и мобильность</h2>
       <div class="section-content">
         <div class="section-nav">
           <button class="section-btn active" data-section="css">CSS-адаптив</button>
@@ -647,96 +366,14 @@ document.querySelector('.modal-close-btn').addEventListener('click', () => {
         </div>
 
         <div class="detail-box" id="responsive-detail">
-          <h2>Адаптивная сетка</h2>
-          <p>Сетка, которая меняет количество колонок при изменении ширины экрана.</p>
-          <div class="preview-area">
-            <div class="responsive-grid">
-              <div>1</div>
-              <div>2</div>
-              <div>3</div>
-              <div>4</div>
-            </div>
-          </div>
-          <div class="code-block"><div class="responsive-grid">
-  <div>1</div>
-  <div>2</div>
-  <div>3</div>
-  <div>4</div>
-</div>
-
-<style>
-.responsive-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 10px;
-}
-.responsive-grid div {
-  padding: 15px;
-  background: #e9ecef;
-  text-align: center;
-  border-radius: 6px;
-}
-</style></div>
+          <!-- Содержимое будет подставляться JS -->
         </div>
       </div>
     </section>
 
-    <!-- Раздел 11: Доступность (a11y) -->
-    <section id="accessibility">
-      <h2>11. Доступность (a11y)</h2>
-      <div class="section-content">
-        <div class="section-nav">
-          <button class="section-btn active" data-section="css">CSS-доступность</button>
-          <button class="section-btn" data-section="js">JavaScript-доступность</button>
-        </div>
-
-        <div class="examples active" id="accessibility-css-examples">
-          <div class="example-card" data-example="aria-label">
-            <p>aria-label</p>
-            <button class="btn-basic">Пример</button>
-          </div>
-          <div class="example-card" data-example="focus-styles">
-            <p>Стили фокуса</p>
-            <button class="btn-basic">Пример</button>
-          </div>
-        </div>
-
-        <div class="examples" id="accessibility-js-examples">
-          <div class="example-card" data-example="focus-trap">
-            <p>Фокусный замок</p>
-            <button class="btn-basic">Пример</button>
-          </div>
-          <div class="example-card" data-example="skip-link">
-            <p>Ссылка пропуска</p>
-            <button class="btn-basic">Пример</button>
-          </div>
-        </div>
-
-        <div class="detail-box" id="a11y-detail">
-          <h2>aria-label</h2>
-          <p>Добавление доступности к элементам с помощью ARIA-атрибутов.</p>
-          <div class="preview-area">
-            <button aria-label="Закрыть">✕</button>
-          </div>
-          <div class="code-block"><button aria-label="Закрыть">✕</button>
-
-<style>
-button {
-  padding: 8px 12px;
-  border: none;
-  background: #dc3545;
-  color: white;
-  border-radius: 50%;
-  cursor: pointer;
-}
-</style></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Раздел 12: UX-улучшения -->
+    <!-- Раздел 11: UX-улучшения -->
     <section id="ux">
-      <h2>12. UX-улучшения</h2>
+      <h2>11. UX-улучшения</h2>
       <div class="section-content">
         <div class="section-nav">
           <button class="section-btn active" data-section="css">CSS-улучшения</button>
@@ -744,73 +381,36 @@ button {
         </div>
 
         <div class="examples active" id="ux-css-examples">
-          <div class="example-card" data-example="tooltip-css">
-            <p>CSS-подсказка</p>
+          <div class="example-card" data-example="ux-scrollbar">
+            <p>Кастомный скроллбар</p>
             <button class="btn-basic">Пример</button>
           </div>
-          <div class="example-card" data-example="loader-css">
-            <p>CSS-лоадер</p>
+          <div class="example-card" data-example="ux-checkbox">
+            <p>Кастомный чекбокс</p>
             <button class="btn-basic">Пример</button>
           </div>
         </div>
 
         <div class="examples" id="ux-js-examples">
-          <div class="example-card" data-example="tooltip-js">
-            <p>JS-подсказка</p>
+          <div class="example-card" data-example="ux-slider">
+            <p>Кастомный слайдер</p>
             <button class="btn-basic">Пример</button>
           </div>
-          <div class="example-card" data-example="loader-js">
-            <p>JS-лоадер</p>
+          <div class="example-card" data-example="ux-tabs">
+            <p>Кастомные табы</p>
             <button class="btn-basic">Пример</button>
           </div>
         </div>
 
         <div class="detail-box" id="ux-detail">
-          <h2>Всплывающая подсказка</h2>
-          <p>Пояснение, которое появляется при наведении.</p>
-          <div class="preview-area">
-            <div class="tooltip">Наведи на меня
-              <span class="tooltip-text">Это подсказка</span>
-            </div>
-          </div>
-          <div class="code-block"><div class="tooltip">Наведи на меня
-  <span class="tooltip-text">Это подсказка</span>
-</div>
-
-<style>
-.tooltip {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-}
-.tooltip .tooltip-text {
-  visibility: hidden;
-  width: 120px;
-  background-color: #555;
-  color: white;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -60px;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.tooltip:hover .tooltip-text {
-  visibility: visible;
-  opacity: 1;
-}
-</style></div>
+          <!-- Содержимое будет подставляться JS -->
         </div>
       </div>
     </section>
 
-    <!-- Раздел 13: Интерактивные виджеты -->
+    <!-- Раздел 12: Интерактивные виджеты -->
     <section id="widgets">
-      <h2>13. Интерактивные виджеты</h2>
+      <h2>12. Интерактивные виджеты</h2>
       <div class="section-content">
         <div class="section-nav">
           <button class="section-btn active" data-section="css">CSS-виджеты</button>
@@ -818,42 +418,29 @@ button {
         </div>
 
         <div class="examples active" id="widgets-css-examples">
-          <div class="example-card" data-example="counter-css">
-            <p>CSS-счётчик</p>
-            <button class="btn-basic">Пример</button>
-          </div>
           <div class="example-card" data-example="progress-bar">
             <p>Прогресс-бар</p>
+            <button class="btn-basic">Пример</button>
+          </div>
+          <div class="example-card" data-example="calendar">
+            <p>Календарь</p>
             <button class="btn-basic">Пример</button>
           </div>
         </div>
 
         <div class="examples" id="widgets-js-examples">
-          <div class="example-card" data-example="counter-js">
-            <p>JS-счётчик</p>
+          <div class="example-card" data-example="tabs">
+            <p>Табы</p>
             <button class="btn-basic">Пример</button>
           </div>
-          <div class="example-card" data-example="slider-js">
-            <p>JS-слайдер</p>
+          <div class="example-card" data-example="slider">
+            <p>Слайдер</p>
             <button class="btn-basic">Пример</button>
           </div>
         </div>
 
         <div class="detail-box" id="widgets-detail">
-          <h2>Счётчик</h2>
-          <p>Интерактивный счётчик кликов.</p>
-          <div class="preview-area">
-            <button class="counter-btn">Кликнуто: 0</button>
-          </div>
-          <div class="code-block"><button class="counter-btn">Кликнуто: 0</button>
-
-<script>
-let count = 0;
-document.querySelector('.counter-btn').addEventListener('click', () => {
-  count++;
-  document.querySelector('.counter-btn').textContent = `Кликнуто: ${count}`;
-});
-</script></div>
+          <!-- Содержимое будет подставляться JS -->
         </div>
       </div>
     </section>

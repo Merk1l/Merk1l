@@ -484,7 +484,7 @@ input, button {
   'video-embed': {
     title: 'Встраиваемое видео',
     desc: 'Видео из YouTube.',
-    html: '<iframe class="video-responsive" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>',
+    html: '<iframe class="video-responsive" src="https://rutube.ru/video/22e722ce9e4c1fc9e5bb12fef08bcd96/" frameborder="0" allowfullscreen></iframe>',
     css: `.video-responsive {
   width: 100%;
   height: 300px;
@@ -1001,188 +1001,170 @@ touchArea.addEventListener('touchend', () => {
 });`
   },
 
-  // Доступность
-  'aria-label': {
-    title: 'aria-label',
-    desc: 'Добавление доступности к элементам с помощью ARIA-атрибутов.',
-    html: '<button aria-label="Закрыть">✕</button>',
-    css: `button {
-  padding: 8px 12px;
-  border: none;
-  background: #dc3545;
-  color: white;
-  border-radius: 50%;
-  cursor: pointer;
-}`
-  },
-  'focus-styles': {
-    title: 'Стили фокуса',
-    desc: 'Выделение элемента при фокусе.',
-    html: '<input type="text" class="focus-input" placeholder="Фокусное поле" />',
-    css: `.focus-input {
-  padding: 10px;
-  border: 2px solid #ccc;
-  border-radius: 6px;
-}
-.focus-input:focus {
-  border-color: #0d6efd;
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
-}`
-  },
-  'focus-trap': {
-    title: 'Фокусный замок',
-    desc: 'Фокус не выходит за пределы модального окна.',
-    html: `<button class="focus-trap-open">Открыть</button>
-<div class="focus-trap-modal" style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border: 1px solid #ccc;">
-  <input type="text" placeholder="Поле 1" tabindex="1" />
-  <input type="text" placeholder="Поле 2" tabindex="2" />
-  <button class="focus-trap-close" tabindex="3">Закрыть</button>
-</div>`,
-    js: `let modal = document.querySelector('.focus-trap-modal');
-let openBtn = document.querySelector('.focus-trap-open');
-let closeBtn = document.querySelector('.focus-trap-close');
-
-openBtn.addEventListener('click', () => {
-  modal.style.display = 'block';
-  modal.querySelector('input[tabindex="1"]').focus();
-});
-
-closeBtn.addEventListener('click', () => {
-  modal.style.display = 'none';
-});
-
-modal.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    modal.style.display = 'none';
-  }
-});`
-  },
-  'skip-link': {
-    title: 'Ссылка пропуска',
-    desc: 'Ссылка, позволяющая пропустить навигацию.',
-    html: `<a href="#main-content" class="skip-link">Пропустить навигацию</a>
-<nav>
-  <a href="#">Ссылка 1</a>
-  <a href="#">Ссылка 2</a>
-</nav>
-<div id="main-content">
-  <h2>Основной контент</h2>
-  <p>Тут основной контент.</p>
-</div>`,
-    css: `.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 6px;
-  background: #000;
-  color: #fff;
-  padding: 8px 16px;
-  text-decoration: none;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  transition: top 0.3s;
-}
-.skip-link:focus {
-  top: 6px;
-  outline: 2px solid #0d6efd;
-  outline-offset: 2px;
-}`
-  },
-
   // UX
-  'tooltip-css': {
-    title: 'CSS-подсказка',
-    desc: 'Всплывающая подсказка без JavaScript.',
-    html: `<div class="tooltip-css">Наведи
-  <span class="tooltip-css-text">Подсказка</span>
+  'ux-scrollbar': {
+    title: 'Кастомный скроллбар',
+    desc: 'Стилизованный скроллбар.',
+    html: `<div class="custom-scrollbar" style="height: 150px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px;">
+  <p>Это длинный текст, чтобы появился скролл.</p>
+  <p>Это длинный текст, чтобы появился скролл.</p>
+  <p>Это длинный текст, чтобы появился скролл.</p>
+  <p>Это длинный текст, чтобы появился скролл.</p>
+  <p>Это длинный текст, чтобы появился скролл.</p>
+  <p>Это длинный текст, чтобы появился скролл.</p>
+  <p>Это длинный текст, чтобы появился скролл.</p>
+  <p>Это длинный текст, чтобы появился скролл.</p>
+  <p>Это длинный текст, чтобы появился скролл.</p>
+  <p>Это длинный текст, чтобы появился скролл.</p>
+  <p>Это длинный текст, чтобы появился скролл.</p>
+  <p>Это длинный текст, чтобы появился скролл.</p>
+  <p>Это длинный текст, чтобы появился скролл.</p>
+  <p>Это длинный текст, чтобы появился скролл.</p>
+  <p>Это длинный текст, чтобы появился скролл.</p>
 </div>`,
-    css: `.tooltip-css {
+    css: `.custom-scrollbar::-webkit-scrollbar {
+  width: 12px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}`
+  },
+  'ux-checkbox': {
+    title: 'Кастомный чекбокс',
+    desc: 'Стилизованный чекбокс.',
+    html: `<label class="custom-checkbox-container">
+  <input type="checkbox">
+  <span class="checkmark"></span>
+  Отметь меня
+</label>`,
+    css: `.custom-checkbox-container {
+  display: block;
   position: relative;
-  display: inline-block;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.custom-checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 4px;
+}
+
+.custom-checkbox-container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.custom-checkbox-container input:checked ~ .checkmark {
+  background-color: #0d6efd;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.custom-checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.custom-checkbox-container .checkmark:after {
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}`
+  },
+  'ux-slider': {
+    title: 'Кастомный слайдер',
+    desc: 'Стилизованный слайдер.',
+    html: `<input type="range" min="0" max="100" value="50" class="custom-slider" />`,
+    css: `.custom-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+}
+
+.custom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #0d6efd;
   cursor: pointer;
 }
-.tooltip-css .tooltip-css-text {
-  visibility: hidden;
-  width: 120px;
-  background-color: #555;
-  color: white;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -60px;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.tooltip-css:hover .tooltip-css-text {
-  visibility: visible;
-  opacity: 1;
-}`
-  },
-  'loader-css': {
-    title: 'CSS-лоадер',
-    desc: 'Анимированный индикатор загрузки.',
-    html: '<div class="loader-css"></div>',
-    css: `.loader-css {
-  border: 5px solid #f3f3f3;
-  border-top: 5px solid #0d6efd;
+
+.custom-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  animation: spin 1s linear infinite;
-}
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  background: #0d6efd;
+  cursor: pointer;
 }`
   },
-  'tooltip-js': {
-    title: 'JS-подсказка',
-    desc: 'Подсказка, показываемая через JavaScript.',
-    html: `<button class="tooltip-js-btn">Показать</button>
-<div class="tooltip-js-content" style="display:none; background: #555; color: white; padding: 5px; border-radius: 6px; margin-top: 5px;">JS-подсказка</div>`,
-    js: `document.querySelector('.tooltip-js-btn').addEventListener('click', () => {
-  const tooltip = document.querySelector('.tooltip-js-content');
-  tooltip.style.display = tooltip.style.display === 'none' ? 'block' : 'none';
-});`
-  },
-  'loader-js': {
-    title: 'JS-лоадер',
-    desc: 'Индикатор загрузки с JS.',
-    html: `<button class="loader-js-btn">Загрузить</button>
-<div class="loader-js" style="display:none; border: 5px solid #f3f3f3; border-top: 5px solid #0d6efd; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite;"></div>`,
-    css: `@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}`,
-    js: `document.querySelector('.loader-js-btn').addEventListener('click', () => {
-  const loader = document.querySelector('.loader-js');
-  loader.style.display = 'block';
-  setTimeout(() => {
-    loader.style.display = 'none';
-  }, 2000);
+  'ux-tabs': {
+    title: 'Кастомные табы',
+    desc: 'Интерактивные табы.',
+    html: `<div class="tab-container">
+  <button class="tab-btn active" data-tab="tab1">Вкладка 1</button>
+  <button class="tab-btn" data-tab="tab2">Вкладка 2</button>
+  <div class="tab-content active" id="tab1">
+    <p>Содержимое первой вкладки</p>
+  </div>
+  <div class="tab-content" id="tab2">
+    <p>Содержимое второй вкладки</p>
+  </div>
+</div>`,
+    js: `document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    const tabId = btn.getAttribute('data-tab');
+    document.getElementById(tabId).classList.add('active');
+  });
 });`
   },
 
   // Виджеты
-  'counter-css': {
-    title: 'CSS-счётчик',
-    desc: 'Счётчик, реализованный на CSS.',
-    html: `<div class="counter-css">
-  <button class="counter-btn-css">Клик: <span>0</span></button>
-</div>`,
-    css: `.counter-css .counter-btn-css {
-  padding: 10px 20px;
-  background: #0d6efd;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}`
-  },
   'progress-bar': {
     title: 'Прогресс-бар',
     desc: 'Индикатор выполнения.',
@@ -1201,18 +1183,114 @@ modal.addEventListener('keydown', (e) => {
   transition: width 0.3s;
 }`
   },
-  'counter-js': {
-    title: 'JS-счётчик',
-    desc: 'Интерактивный счётчик кликов.',
-    html: '<button class="counter-btn">Кликнуто: 0</button>',
-    js: `let count = 0;
-document.querySelector('.counter-btn').addEventListener('click', () => {
-  count++;
-  document.querySelector('.counter-btn').textContent = \`Кликнуто: \${count}\`;
+  'calendar': {
+    title: 'Календарь',
+    desc: 'Простой календарь.',
+    html: `<div class="calendar">
+  <h3>Ноябрь 2025</h3>
+  <div class="calendar-grid">
+    <div class="calendar-day">Пн</div>
+    <div class="calendar-day">Вт</div>
+    <div class="calendar-day">Ср</div>
+    <div class="calendar-day">Чт</div>
+    <div class="calendar-day">Пт</div>
+    <div class="calendar-day">Сб</div>
+    <div class="calendar-day">Вс</div>
+    <div class="calendar-date">28</div>
+    <div class="calendar-date">29</div>
+    <div class="calendar-date">30</div>
+    <div class="calendar-date">31</div>
+    <div class="calendar-date">1</div>
+    <div class="calendar-date">2</div>
+    <div class="calendar-date">3</div>
+    <div class="calendar-date">4</div>
+    <div class="calendar-date">5</div>
+    <div class="calendar-date">6</div>
+    <div class="calendar-date">7</div>
+    <div class="calendar-date">8</div>
+    <div class="calendar-date">9</div>
+    <div class="calendar-date">10</div>
+    <div class="calendar-date">11</div>
+    <div class="calendar-date">12</div>
+    <div class="calendar-date">13</div>
+    <div class="calendar-date today">14</div>
+    <div class="calendar-date">15</div>
+    <div class="calendar-date">16</div>
+    <div class="calendar-date">17</div>
+    <div class="calendar-date">18</div>
+    <div class="calendar-date">19</div>
+    <div class="calendar-date">20</div>
+    <div class="calendar-date">21</div>
+    <div class="calendar-date">22</div>
+    <div class="calendar-date">23</div>
+    <div class="calendar-date">24</div>
+    <div class="calendar-date">25</div>
+    <div class="calendar-date">26</div>
+    <div class="calendar-date">27</div>
+    <div class="calendar-date">28</div>
+    <div class="calendar-date">29</div>
+    <div class="calendar-date">30</div>
+  </div>
+</div>`,
+    css: `.calendar {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.calendar h3 {
+  margin-bottom: 10px;
+}
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+.calendar-day {
+  font-weight: bold;
+  padding: 5px;
+  background: #e9ecef;
+  border-radius: 4px;
+}
+.calendar-date {
+  padding: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.calendar-date:hover {
+  background: #e9ecef;
+}
+.calendar-date.today {
+  background: #0d6efd;
+  color: white;
+}`
+  },
+  'tabs': {
+    title: 'Табы',
+    desc: 'Интерактивные табы.',
+    html: `<div class="tabs-container">
+  <button class="tab-btn active" data-tab="tab1">Вкладка 1</button>
+  <button class="tab-btn" data-tab="tab2">Вкладка 2</button>
+  <div class="tab-content active" id="tab1">
+    <p>Содержимое первой вкладки</p>
+  </div>
+  <div class="tab-content" id="tab2">
+    <p>Содержимое второй вкладки</p>
+  </div>
+</div>`,
+    js: `document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    const tabId = btn.getAttribute('data-tab');
+    document.getElementById(tabId).classList.add('active');
+  });
 });`
   },
-  'slider-js': {
-    title: 'JS-слайдер',
+  'slider': {
+    title: 'Слайдер',
     desc: 'Простой слайдер значений.',
     html: `<input type="range" min="0" max="100" value="50" class="slider-js" id="slider" />
 <p>Значение: <span id="sliderValue">50</span></p>`,
@@ -1267,6 +1345,16 @@ document.querySelectorAll('.example-card').forEach(card => {
     let detailBoxId = `${sectionId}-detail`;
     if (sectionId === 'typography') detailBoxId = 'typo-detail';
     if (sectionId === 'buttons') detailBoxId = 'buttons-detail';
+    if (sectionId === 'forms') detailBoxId = 'forms-detail';
+    if (sectionId === 'navigation') detailBoxId = 'nav-detail';
+    if (sectionId === 'media') detailBoxId = 'media-detail';
+    if (sectionId === 'cards') detailBoxId = 'cards-detail';
+    if (sectionId === 'animations') detailBoxId = 'anim-detail';
+    if (sectionId === 'themes') detailBoxId = 'themes-detail';
+    if (sectionId === 'modals') detailBoxId = 'modals-detail';
+    if (sectionId === 'responsive') detailBoxId = 'responsive-detail';
+    if (sectionId === 'ux') detailBoxId = 'ux-detail';
+    if (sectionId === 'widgets') detailBoxId = 'widgets-detail';
 
     const detailBox = document.getElementById(detailBoxId);
     if (detailBox) {
@@ -1339,6 +1427,18 @@ function showExample(id, detailBox) {
         p.textContent = 'Текст изменился!';
       });
     }
+  } else if (id === 'typo-typewriter') {
+    const text = 'Привет, мир!';
+    let i = 0;
+    const speed = 100;
+    function typeWriter() {
+      if (i < text.length) {
+        document.getElementById('typewriter').innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      }
+    }
+    typeWriter();
   } else if (id === 'form-validation') {
     const form = document.querySelector('.validated-form');
     if (form) {
@@ -1405,6 +1505,35 @@ function showExample(id, detailBox) {
     document.querySelector('.expanding-card').addEventListener('click', function() {
       this.classList.toggle('active');
     });
+  } else if (id === 'card-drag') {
+    let card = document.querySelector('.draggable-card');
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    card.onmousedown = dragMouseDown;
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      card.style.top = (card.offsetTop - pos2) + "px";
+      card.style.left = (card.offsetLeft - pos1) + "px";
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+    }
   } else if (id === 'theme-storage') {
     const themeBtn = document.querySelector('.theme-storage-btn');
     const currentTheme = localStorage.getItem('theme');
@@ -1446,13 +1575,17 @@ function showExample(id, detailBox) {
       const tooltip = document.querySelector('.tooltip-js-content');
       tooltip.style.display = tooltip.style.display === 'none' ? 'block' : 'none';
     });
-  } else if (id === 'counter-js') {
-    let count = 0;
-    document.querySelector('.counter-btn').addEventListener('click', () => {
-      count++;
-      document.querySelector('.counter-btn').textContent = `Кликнуто: ${count}`;
+  } else if (id === 'ux-tabs' || id === 'tabs') {
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        const tabId = btn.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+      });
     });
-  } else if (id === 'slider-js') {
+  } else if (id === 'slider') {
     const slider = document.getElementById('slider');
     const output = document.getElementById('sliderValue');
     output.textContent = slider.value;
@@ -1495,6 +1628,16 @@ document.querySelectorAll('.section-btn.active').forEach(btn => {
       let detailBoxId = `${sectionId}-detail`;
       if (sectionId === 'typography') detailBoxId = 'typo-detail';
       if (sectionId === 'buttons') detailBoxId = 'buttons-detail';
+      if (sectionId === 'forms') detailBoxId = 'forms-detail';
+      if (sectionId === 'navigation') detailBoxId = 'nav-detail';
+      if (sectionId === 'media') detailBoxId = 'media-detail';
+      if (sectionId === 'cards') detailBoxId = 'cards-detail';
+      if (sectionId === 'animations') detailBoxId = 'anim-detail';
+      if (sectionId === 'themes') detailBoxId = 'themes-detail';
+      if (sectionId === 'modals') detailBoxId = 'modals-detail';
+      if (sectionId === 'responsive') detailBoxId = 'responsive-detail';
+      if (sectionId === 'ux') detailBoxId = 'ux-detail';
+      if (sectionId === 'widgets') detailBoxId = 'widgets-detail';
 
       const detailBox = document.getElementById(detailBoxId);
       if (detailBox) {
