@@ -27,11 +27,10 @@
       <li><a href="#media">5. Изображения и медиа</a></li>
       <li><a href="#cards">6. Карточки и сетки</a></li>
       <li><a href="#animations">7. Анимации и переходы</a></li>
-      <!-- Убран: 8. Темы и персонализация -->
-      <li><a href="#modals">8. Модальные окна и всплывающие элементы</a></li> <!-- Теперь 8 -->
-      <li><a href="#responsive">9. Адаптивность и мобильность</a></li> <!-- Теперь 9 -->
-      <li><a href="#ux">11. UX-улучшения</a></li> <!-- Теперь 11 -->
-      <li><a href="#widgets">12. Интерактивные виджеты</a></li> <!-- Теперь 12 -->
+      <li><a href="#modals">8. Модальные окна и всплывающие элементы</a></li>
+      <li><a href="#responsive">9. Адаптивность и мобильность</a></li>
+      <li><a href="#ux">11. UX-улучшения</a></li>
+      <li><a href="#widgets">12. Интерактивные виджеты</a></li>
     </ul>
   </nav>
 
@@ -55,11 +54,9 @@
             <p>Градиентный текст</p>
             <button class="btn-basic">Пример</button>
           </div>
-          <!-- Убран: 'typo-shadow' -->
         </div>
 
         <div class="examples" id="typography-js-examples">
-          <!-- Убран: 'typo-change' -->
           <div class="example-card" data-example="typo-typewriter">
             <p>Печатающийся текст</p>
             <button class="btn-basic">Пример</button>
@@ -131,11 +128,10 @@
             <p>Простая форма</p>
             <button class="btn-basic">Пример</button>
           </div>
-          <div class="example-card" data-example="form-styled"> <!-- Исправлено: теперь указывает на 'form-styled' -->
+          <div class="example-card" data-example="form-styled">
             <p>Стилизованная форма</p>
             <button class="btn-basic">Пример</button>
           </div>
-          <!-- Убран: 'form-grid' -->
         </div>
 
         <div class="examples" id="forms-js-examples">
@@ -237,6 +233,38 @@
       </div>
     </section>
 
+    <!-- Раздел 6: Карточки и сетки -->
+    <section id="cards">
+      <h2>6. Карточки и сетки</h2>
+      <div class="section-content">
+        <div class="section-nav">
+          <button class="section-btn active" data-section="css">CSS-карточки</button>
+          <button class="section-btn" data-section="js">JavaScript-карточки</button>
+        </div>
+
+        <div class="examples active" id="cards-css-examples">
+          <div class="example-card" data-example="card-basic">
+            <p>Базовая карточка</p>
+            <button class="btn-basic">Пример</button>
+          </div>
+          <div class="example-card" data-example="card-hover">
+            <p>Карточка с hover</p>
+            <button class="btn-basic">Пример</button>
+          </div>
+        </div>
+
+        <div class="examples" id="cards-js-examples">
+          <div class="example-card" data-example="card-toggle">
+            <p>Переключение карточек</p>
+            <button class="btn-basic">Пример</button>
+          </div>
+        </div>
+
+        <div class="detail-box" id="cards-detail">
+          <!-- Содержимое будет подставляться JS -->
+        </div>
+      </div>
+    </section>
 
     <!-- Раздел 7: Анимации и переходы -->
     <section id="animations">
@@ -263,12 +291,10 @@
         </div>
 
         <div class="examples" id="animations-js-examples">
-          <!-- Убран: 'js-animate' -->
           <div class="example-card" data-example="js-tween">
             <p>Плавный tween</p>
             <button class="btn-basic">Пример</button>
           </div>
-          <!-- Убран: 'js-tween' дубль, оставлен один -->
         </div>
 
         <div class="detail-box" id="anim-detail">
@@ -287,10 +313,8 @@
         </div>
 
         <div class="examples active" id="modals-css-examples">
-          <!-- Убран: 'modal-basic' -->
-          <!-- Заменено: 'tooltip-basic' на 'pulse-button' (название изменено на 'Модалка') -->
-          <div class="example-card" data-example="pulse-button">
-            <p>Модалка</p> <!-- Название изменено -->
+          <div class="example-card" data-example="modal-basic">
+            <p>Простая модалка</p>
             <button class="btn-basic">Пример</button>
           </div>
         </div>
@@ -407,10 +431,7 @@
         </div>
 
         <div class="examples" id="widgets-js-examples">
-          <div class="example-card" data-example="tabs">
-            <p>Табы</p>
-            <button class="btn-basic">Пример</button>
-          </div>
+          <!-- Убран: 'tabs' -->
           <div class="example-card" data-example="slider">
             <p>Слайдер</p>
             <button class="btn-basic">Пример</button>
@@ -431,5 +452,4 @@
 
   <script src="script.js"></script>
 </body>
-
 </html>
